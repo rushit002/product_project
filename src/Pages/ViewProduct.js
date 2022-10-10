@@ -8,7 +8,6 @@ const navigate = useNavigate();
    const { id } = useParams();
   const [product, setProduct] = useState();
 
-  console.log("id", id);
   const productApi = () => {
     fetch(`https://fakestoreapi.com/products/${id}`)
       .then((res) => res.json())
@@ -19,14 +18,13 @@ const navigate = useNavigate();
     const localstorageData = [];
     localstorageData.push(product);
     const localstorageDataAdd = localstorageData.concat(JSON.parse(localStorage.getItem("cartItem") || "[]"));
-    // const filterData = localstorageDataAdd.filter((item) => item === product);
-    localStorage.setItem("cartItem", JSON.stringify(localstorageDataAdd));
+    const filterData = localstorageDataAdd.filter((item) => item === product);
+     localStorage.setItem("cartItem", JSON.stringify(localstorageDataAdd));
   };
 
   useEffect(() => {
     productApi();
   }, []);
-  console.log("rating", product?.rating?.rate);
   return (
     <div>
       <div className="container-fluid">

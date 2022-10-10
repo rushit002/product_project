@@ -16,8 +16,10 @@ export default function Header() {
   }, []);
   const localStorageGetData = () => {
     const getData = JSON.parse(localStorage.getItem("cartItem"));
-    const getDataCount = Object.keys(getData).length;
-    setProductCart(getDataCount);
+    if (getData) {
+      const getDataCount = Object.keys(getData).length;
+      setProductCart(getDataCount);
+    }
   };
 
   return (

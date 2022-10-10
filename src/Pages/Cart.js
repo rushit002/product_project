@@ -1,17 +1,29 @@
 import React, { useEffect, useState } from "react";
 
 export default function Cart() {
-  const [productCart, setProductCart] = useState();
+  const [productCart, setProductCart] = useState([]);
 
-  useEffect(() => {
-    localStorageGetData();
-  }, []);
+ 
 
   const localStorageGetData = () => {
     const getData = JSON.parse(localStorage.getItem("cartItem"));
     setProductCart(getData);
+    console.log("productCart",productCart)
   };
 
+  const quantityAdd=()=>{
+       const quantityAddData=productCart.forEach((item)=>{
+               return "quantity" 
+       })
+      console.log("quantityAdd",quantityAddData)
+  }
+
+  useEffect(() => {
+    localStorageGetData();
+  quantityAdd();
+  }, []);
+
+  
   return (
     <div className="Cart-page" style={{}}>
       <div>
@@ -30,9 +42,9 @@ export default function Cart() {
                     <div style={{textAlign:"start",display:"flex",marginTop:"20px"}}>
                          <h4 style={{fontWeight:"700"}}>{item.id}</h4>
                          <h4 style={{fontWeight:"700"}}>&#215;</h4>
-                         <h4 style={{fontWeight:"700"}}>{item.price}</h4>
+                         <h4 style={{fontWeight:"700"}}>${item.price}</h4>
                          <h4 style={{fontWeight:"700"}}>=</h4>
-                         <h4 style={{fontWeight:"700"}}>{item.price}</h4>
+                         <h4 style={{fontWeight:"700"}}>${item.price}</h4>
                       </div> 
                       <div className="button-box" style={{display:"flex",paddingTop:"10px"}}>
                       <button type="button" class="btn btn-outline-dark" style={{width:"52px",marginRight:"10px"}}><span>&#8722;</span>
@@ -47,7 +59,6 @@ export default function Cart() {
               </div>
             );
           })}
-        ss
       </div>
     </div>
   );

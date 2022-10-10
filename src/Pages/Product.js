@@ -23,7 +23,7 @@ export default function Product() {
     // const filterDataMethod=getProduct&&getProduct.filter((cate)=>getCategoriesData?.find((ele)=>ele===cate.category))
     // setFilterData(filterDataMethod)
     const filterDataMethod = getProduct.filter((item) => item.category === cat);
-    setFilterData(filterDataMethod);
+      setFilterData(filterDataMethod);
   };
 
   useEffect(() => {
