@@ -1,0 +1,221 @@
+header{
+       
+}
+ nav a{
+   text-decoration: none !important;
+   font-size: 18px;
+   color:#a79999 ;
+   font-weight: 500;
+  padding-right: 20px;
+}
+
+.product .card{
+    width: 320px;
+}
+.product-box{
+    display: grid;
+    grid-gap: 49px;
+    grid-template-columns: repeat(2 ,1fr);
+	justify-items: center;
+}
+
+.product-card #container{
+	box-shadow: 0 15px 30px 1px grey;
+	background: rgba(255, 255, 255, 0.90);
+	text-align: center;
+	border-radius: 5px;
+	overflow: hidden;
+	margin: 30px;
+	height: 350px;
+	width: 700px;
+  
+	
+}
+
+
+
+.product-card .product-details {
+	position: relative;
+	text-align: left;
+	overflow: hidden;
+	padding: 30px;
+	height: 100%;
+	float: left;
+	width: 40%;
+
+}
+
+.product-card #container .product-details h1{
+	font-family: 'Bebas Neue', cursive;
+	display: inline-block;
+	position: relative;
+	font-size: 30px;
+	color: #344055;
+	margin: 0;
+	
+}
+
+.product-card #container .product-details h1:before{
+	position: absolute;
+	content: '';
+	right: 0%; 
+	top: 0%;
+	transform: translate(25px, -15px);
+	font-family: 'Bree Serif', serif;
+	display: inline-block;
+	background: #ffe6e6;
+	border-radius: 5px;
+	font-size: 14px;
+	padding: 5px;
+	color: white;
+	margin: 0;
+	animation: chan-sh 6s ease infinite;
+
+}
+
+
+
+	
+
+
+.product-card .hint-star {
+	display: inline-block;
+	margin-left: 0.5em;
+	color: gold;
+	width: 50%;
+}
+
+
+.product-card #container .product-details > p {
+font-family: 'EB Garamond', serif;
+	text-align: center;
+	font-size: 18px;
+	color: #7d7d7d;
+	
+}
+.product-card .control{
+	position: absolute;
+	bottom: 20%;
+	left: 22.8%;
+	
+}
+.product-card .btn {
+	transform: translateY(0px);
+	transition: 0.3s linear;
+	background:  #809fff;
+	border-radius: 5px;
+  position: relative;
+  overflow: hidden;
+	cursor: pointer;
+	outline: none;
+	border: none;
+	color: #eee;
+	padding: 0;
+	margin: 0;
+	
+}
+
+.product-card .btn:hover{transform: translateY(-6px);
+	background: #1a66ff;}
+
+.product-card .btn span {
+	font-family: 'Farsan', cursive;
+	transition: transform 0.3s;
+	display: inline-block;
+  padding: 10px 20px;
+	font-size: 1.2em;
+	margin:0;
+	
+}
+.product-card .btn .price, .shopping-cart{
+	background: #333;
+	border: 0;
+	margin: 0;
+}
+
+.product-card .btn .price {
+	transform: translateX(-10%);
+	padding-right: 10px;
+}
+
+.product-card .btn .shopping-cart {
+	transform: translateX(-100%);
+  position: absolute;
+	background: #333;
+	z-index: 1;
+  left: 0;
+  top: 0;
+}
+
+.product-card .btn .buy {z-index: 3; font-weight: bolder;}
+.product-card .btn  a{
+  color: white !important;
+  text-decoration: none !important;
+  padding-right: 16px;
+}
+
+.product-card .btn:hover .price {transform: translateX(-110%);}
+
+.product-card .btn:hover .shopping-cart {transform: translateX(0%);}
+
+
+
+.product-card .product-image {
+	transition: all 0.3s ease-out;
+	display: inline-block;
+	position: relative;
+	overflow: hidden;
+	height: 100%;
+	float: right;
+	width: 45%;
+	display: inline-block;
+}
+
+.product-card #container img {width: 100%;height: 100%;}
+
+.product-card .info {
+    background: rgba(27, 26, 26, 0.9);
+    font-family: 'Bree Serif', serif;
+    transition: all 0.3s ease-out;
+    transform: translateX(-100%);
+    position: absolute;
+    line-height: 1.8;
+    text-align: left;
+    font-size: 105%;
+    cursor: no-drop;
+    color: #FFF;
+    height: 100%;
+    width: 100%;
+    left: 0;
+    top: 0;
+}
+
+.product-card .info h2 {text-align: center}
+.product-card .product-image:hover .info{transform: translateX(0);}
+
+.product-card .info ul li{transition: 0.3s ease;}
+.product-card .info ul li:hover{transform: translateX(50px) scale(1.3);}
+
+.product-card .product-image:hover img {transition: all 0.3s ease-out;}
+.product-card .product-image:hover img {transform: scale(1.2, 1.2);}
+
+
+/* viewProduct */
+.text-top h1{
+  font-weight: 300;
+  color: black;
+  text-align: start;
+  font-size: 44px;
+    padding-top: 10px;
+    padding-bottom: 10px;
+}
+.text-top h3{
+    text-transform: uppercase;
+	text-align: start;
+    font-weight: 500;
+    color: #73787c;
+}
+.text-top p{
+	font-size: 20px;
+    text-align: start;
+}
