@@ -6,6 +6,7 @@ import ".././assets/index.css";
 import ShoppingCartIcon from "@mui/icons-material/ShoppingCart";
 import LoginIcon from "@mui/icons-material/Login";
 import PersonAddAlt1Icon from "@mui/icons-material/PersonAddAlt1";
+import PointOfSaleIcon from '@mui/icons-material/PointOfSale';
 import { color } from "@mui/system";
 
 export default function Header() {
@@ -17,7 +18,7 @@ export default function Header() {
   const localStorageGetData = () => {
     const getData = JSON.parse(localStorage.getItem("cartItem"));
     if (getData) {
-      const getDataCount = Object.keys(getData).length;
+      const getDataCount = Object.keys(getData)?.length;
       setProductCart(getDataCount);
     }
   };
@@ -107,6 +108,22 @@ export default function Header() {
               <button type="button" class="btn btn-outline-secondary d-flex">
                 <PersonAddAlt1Icon />
                 Register
+              </button>
+            </NavLink>
+            <NavLink
+              class="nav-link text-decoration-none"
+              aria-current="page"
+              to="/checkout"
+            >
+              <button
+                type="button"
+                class="btn btn-outline-secondary d-flex position-relative"
+              >
+                <span class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-dark">
+                  Pay
+                </span>
+                <PointOfSaleIcon style={{ marginRight: "10px" }} />
+                Checkout
               </button>
             </NavLink>
             <NavLink

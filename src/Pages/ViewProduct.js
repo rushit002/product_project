@@ -1,9 +1,12 @@
 import { Rating } from "@mui/material";
-import React, { useEffect, useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import { useParams } from "react-router";
 import { useNavigate } from "react-router-dom";
+import { UserProductData } from "../App";
 
 export default function ViewProduct() {
+  const {getProduct,setGetProduct,getCategoriesData,setGetCategoriesData,filterData,setFilterData}=useContext(UserProductData)
+
 const navigate = useNavigate();
    const { id } = useParams();
   const [product, setProduct] = useState();
@@ -11,20 +14,27 @@ const navigate = useNavigate();
   const productApi = () => {
     fetch(`https://fakestoreapi.com/products/${id}`)
       .then((res) => res.json())
-      .then((json) => setProduct(json));
+      .then((json) => 
+      setProduct(json));
   };
 
+console.log("getProduct",getProduct)
+
   const addToCart = () => {
+    const quantityAdd=getProduct&&getProduct?.map(item=>({...item,total:0,price:0}))
+    console.log("quantityAdd",quantityAdd)
+
     const localstorageData = [];
     localstorageData.push(product);
     const localstorageDataAdd = localstorageData.concat(JSON.parse(localStorage.getItem("cartItem") || "[]"));
-    const filterData = localstorageDataAdd.filter((item) => item === product);
-     localStorage.setItem("cartItem", JSON.stringify(localstorageDataAdd));
-  };
+    const filterData=getProduct.filter(ele=>localstorageDataAdd.find(item=>item.id===ele.id))
+    localStorage.setItem("cartItem", JSON.stringify(filterData));
+  };  
 
   useEffect(() => {
     productApi();
   }, []);
+  
   return (
     <div>
       <div className="container-fluid">

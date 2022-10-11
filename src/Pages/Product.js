@@ -1,35 +1,23 @@
-import React, { useEffect, useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import { NavLink } from "react-router-dom";
 import ShoppingCartIcon from '@mui/icons-material/ShoppingCart';
-import { Rating } from "@mui/material";
+import { Rating, ToggleButton, ToggleButtonGroup } from "@mui/material";
+import { UserProductData } from "../App";
 
 export default function Product() {
-  const [getProduct, setGetProduct] = useState([]);
-  const [getCategoriesData, setGetCategoriesData] = useState();
-  const [filterData, setFilterData] = useState();
+  const {getProduct,setGetProduct,getCategoriesData,setGetCategoriesData,filterData,setFilterData}=useContext(UserProductData)
+  const [alignment, setAlignment] = React.useState();
 
-  const productApi = () => {
-    fetch("https://fakestoreapi.com/products")
-      .then((res) => res.json())
-      .then((json) => setGetProduct(json));
+  const handleChange = (event, newAlignment) => {
+    setAlignment(newAlignment);
   };
 
-  const categoriesApi = () => {
-    fetch("https://fakestoreapi.com/products/categories")
-      .then((res) => res.json())
-      .then((json) => setGetCategoriesData(json));
-  };
   const filterFunction = (cat) => {
     // const filterDataMethod=getProduct&&getProduct.filter((cate)=>getCategoriesData?.find((ele)=>ele===cate.category))
     // setFilterData(filterDataMethod)
     const filterDataMethod = getProduct.filter((item) => item.category === cat);
       setFilterData(filterDataMethod);
   };
-
-  useEffect(() => {
-    productApi();
-    categoriesApi();
-  }, []);
 
   useEffect(() => {
     filterFunction();
@@ -47,41 +35,19 @@ export default function Product() {
           aria-label="Basic outlined example"
           style={{ paddingBottom: "40px",paddingTop:"40px" }}
         >
-          <button
-            type="button"
-            class="btn btn-outline-primary"
-            onClick={() => setFilterData(getProduct)}
-          >
-            All
-          </button>
-          <button
-            type="button"
-            class="btn btn-outline-primary"
-            onClick={() => filterFunction("men's clothing")}
-          >
-            Men's Clothing
-          </button>
-          <button
-            type="button"
-            class="btn btn-outline-primary"
-            onClick={() => filterFunction("women's clothing")}
-          >
-            Women's Clothing
-          </button>
-          <button
-            type="button"
-            class="btn btn-outline-primary"
-            onClick={() => filterFunction("electronics")}
-          >
-            Electronic
-          </button>
-          <button
-            type="button"
-            class="btn btn-outline-primary"
-            onClick={() => filterFunction("jewelery")}
-          >
-            Jewelery
-          </button>
+          <ToggleButtonGroup
+      color="primary"
+      value={alignment}
+      exclusive
+      onChange={handleChange}
+      aria-label="Platform"
+    >
+      <ToggleButton value="All"    onClick={() => setFilterData(getProduct)}>All</ToggleButton>
+      <ToggleButton value="men's clothing"     onClick={() => filterFunction("men's clothing")}>men's clothing</ToggleButton>
+      <ToggleButton value="women's clothing"  onClick={() => filterFunction("women's clothing")}>women's clothing</ToggleButton>
+      <ToggleButton value="electronics" onClick={() => filterFunction("electronics")} >electronics</ToggleButton>
+      <ToggleButton value="jewelery" onClick={() => filterFunction("jewelery")}>jewelery</ToggleButton>
+    </ToggleButtonGroup>
         </div>
         <div className="product-box">
           {filterData?.map((item) => {
@@ -136,8 +102,8 @@ export default function Product() {
   };
   return (
     <div class="">
-      <div className="">
-        <ShowProduct />
+      <div className="Product-box">
+ <ShowProduct />
       </div>
     </div>
   );
