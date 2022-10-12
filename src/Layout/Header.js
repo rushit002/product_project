@@ -7,6 +7,7 @@ import ShoppingCartIcon from "@mui/icons-material/ShoppingCart";
 import LoginIcon from "@mui/icons-material/Login";
 import PersonAddAlt1Icon from "@mui/icons-material/PersonAddAlt1";
 import PointOfSaleIcon from '@mui/icons-material/PointOfSale';
+import SellIcon from '@mui/icons-material/Sell';
 import { color } from "@mui/system";
 
 export default function Header() {
@@ -90,6 +91,16 @@ export default function Header() {
             <div></div>
           </div>
           <div class="navbar-nav">
+          <NavLink
+              class="nav-link  text-decoration-none"
+              aria-current="page"
+              to="/register"
+            >
+              <button type="button" class="btn btn-outline-secondary d-flex">
+                <LoginIcon />
+                Register
+              </button>
+            </NavLink>
             <NavLink
               class="nav-link  text-decoration-none"
               aria-current="page"
@@ -100,14 +111,15 @@ export default function Header() {
                 Login
               </button>
             </NavLink>
+            
             <NavLink
-              class="nav-link text-decoration-none"
+              class="nav-link  text-decoration-none"
               aria-current="page"
-              to="/register"
+              to="/selling"
             >
               <button type="button" class="btn btn-outline-secondary d-flex">
-                <PersonAddAlt1Icon />
-                Register
+                <SellIcon />
+                Selling Product
               </button>
             </NavLink>
             <NavLink

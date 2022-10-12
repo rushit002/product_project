@@ -10,6 +10,9 @@ import About from "./Pages/About";
 import Cart from "./Pages/Cart";
 import { createContext, useEffect, useState } from "react";
 import CheckoutProduct from "./Pages/CheckoutProduct";
+import SellingProduct from "./Pages/SellingProduct";
+import Login from "./Pages/Login";
+import Register from "./Pages/Register";
 
 export const UserProductData=createContext()
 
@@ -51,10 +54,14 @@ useEffect(() => {
      <Route path='/' element={<HomePage/>}/>
      <Route path='/product' element={<Product/>}/>
      <Route path='/product/:id' element={<ViewProduct/>}/>
-     <Route path='/about' element={<About/>}/>
      <Route path='/contact' element={<Contact/>}/>
+     <Route path='/selling' element={<SellingProduct/>}/>
+     <Route path='/about' element={<About/>}/>
+     <Route path='/login' element={<Login/>}/>
+     <Route path='/register' element={<Register/>}/>
      <Route path='/checkout' element={<CheckoutProduct/>}/>
      <Route path='/cart' element={<Cart/>}/>
+
      </Routes>
         </BrowserRouter>
       </UserProductData.Provider>

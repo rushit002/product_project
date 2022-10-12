@@ -15,27 +15,26 @@ export default function Cart() {
   };
 
   const quantityAdd = (item) => {
-    if (item) {
-      setQuantity((item.quantity = item.quantity + 1));
-      console.log("item", item);
-      const total = parseInt(item.price * item.quantity);
-      const itemClone = { ...item };
-      itemClone.total = total;
-      console.log("total", itemClone);
 
-      const localstorageData = [];
-      localstorageData.push(itemClone);
-      console.log("localstorageData", localstorageData);
-      const localstorageDataAdd = localstorageData.concat(
-        JSON.parse(localStorage.getItem("cartItem") || "[]")
-      );
-      console.log("localstorageDataAdd", localstorageDataAdd);
-      const filterData = productCart.filter((ele) =>
-        localstorageDataAdd.find((value) => value.id === ele.id)
-      );
-      console.log("filterData", filterData);
-      localStorage.setItem("cartItem", JSON.stringify(filterData));
-    }
+      // const total = parseInt(item.price * item.quantity);
+      // const itemClone = { ...item };
+      // itemClone.total = total;
+      // console.log("total", itemClone);
+if(item){
+
+  setQuantity((item.quantity = item.quantity + 1));
+  if (item) {
+    const localstorageData = [];
+    localstorageData.push(item);
+    const localstorageDataAdd = localstorageData.concat(
+      JSON.parse(localStorage.getItem("cartItem") || "[]")
+    );
+    const filterData = productCart?.filter((ele) =>
+      localstorageDataAdd.find((item) => item.id === ele.id)
+    );
+    localStorage.setItem("cartItem", JSON.stringify(filterData));
+  }
+}
   };
 
   const quantityremove = (item) => {
