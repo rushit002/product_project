@@ -8,12 +8,12 @@ import { UserProductData } from '../App'
 export default function HomePage() {
   const {getProduct,setGetProduct,getCategoriesData,setGetCategoriesData}=useContext(UserProductData)
    
-  console.log("getProduct",getProduct)       
+  console.log("getProduct",getProduct)  
 
- const filterDataFunction=(cat)=>{
-     const filterData=getProduct.filter((ele)=>ele.category===cat)
+  const filterDataFunction=(cat)=>{
+     const filterData=getProduct.filter((ele)=>getCategoriesData.find((value)=>value===ele.category))
      console.log("filterData",filterData)
- }
+  }
   
  useEffect(() => {
    filterDataFunction()
@@ -25,7 +25,7 @@ export default function HomePage() {
         <div id="carouselExampleIndicators" class="carousel slide" data-bs-ride="true">
   <div class="carousel-indicators">
     <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Slide 1"></button>
-    <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="1" aria-label="Slide 2"></button>
+    <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="1" aria-label="Slide 2" ></button>
     <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="2" aria-label="Slide 3"></button>
   </div>
   <div class="carousel-inner">
@@ -49,7 +49,6 @@ export default function HomePage() {
   </button>
 </div>
 <div>
-   
 </div>
     </div>
   )

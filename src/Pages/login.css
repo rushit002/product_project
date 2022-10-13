@@ -1,7 +1,7 @@
 .login-page{
     
 }
-.background{
+.login-page .background{
     width: 430px;
     height: 520px;
     position: absolute;
@@ -10,13 +10,13 @@
     top: 50%;
     background-color: #080710;
 }
-.background .shape{
+.login-page  .background .shape{
     height: 200px;
     width: 200px;
     position: absolute;
     border-radius: 50%;
 }
-.shape:first-child{
+.login-page  .shape:first-child{
     background: linear-gradient(
         #1845ad,
         #23a2f6
@@ -24,7 +24,7 @@
     left: -80px;
     top: -80px;
 }
-.shape:last-child{
+.login-page  .shape:last-child{
     background: linear-gradient(
         to right,
         #ff512f,
@@ -33,7 +33,7 @@
     right: -30px;
     bottom: -80px;
 }
-form{
+.login-page  form{
     height: 520px;
     width: 400px;
     background-color: rgba(255,255,255,0.13);
@@ -47,27 +47,27 @@ form{
     box-shadow: 0 0 40px rgba(8,7,16,0.6);
     padding: 50px 35px;
 }
-form *{
+.login-page  form *{
     font-family: 'Poppins',sans-serif;
     color: #ffffff;
     letter-spacing: 0.5px;
     outline: none;
     border: none;
 }
-form h3{
+.login-page  form h3{
     font-size: 32px;
     font-weight: 500;
     line-height: 42px;
     text-align: center;
 }
 
-label{
+.login-page  label{
     display: block;
     margin-top: 30px;
     font-size: 16px;
     font-weight: 500;
 }
-input{
+.login-page  input{
     display: block;
     height: 50px;
     width: 100%;
@@ -81,7 +81,7 @@ input{
 ::placeholder{
     color: #e5e5e5;
 }
-button{
+.login-page  button{
     margin-top: 50px;
     width: 100%;
     background-color: #ffffff;
@@ -92,11 +92,11 @@ button{
     border-radius: 5px;
     cursor: pointer;
 }
-.social{
+.login-page  .social{
   margin-top: 30px;
   display: flex;
 }
-.social div{
+.login-page  .social div{
   background: red;
   width: 150px;
   border-radius: 3px;
@@ -105,12 +105,12 @@ button{
   color: #eaf0fb;
   text-align: center;
 }
-.social div:hover{
+.login-page  .social div:hover{
   background-color: rgba(255,255,255,0.47);
 }
-.social .fb{
+.login-page  .social .fb{
   margin-left: 25px;
 }
-.social i{
+.login-page  .social i{
   margin-right: 4px;
 }
