@@ -1,5 +1,14 @@
 import React, { useEffect, useState } from "react";
 import "./login.css";
+import Stack from '@mui/material/Stack';
+import Button from '@mui/material/Button';
+import Snackbar from '@mui/material/Snackbar';
+import MuiAlert from '@mui/material/Alert';
+import { useNavigate } from "react-router-dom";
+
+const Alert = React.forwardRef(function Alert(props, ref) {
+  return <MuiAlert elevation={6} ref={ref} variant="filled" {...props} />;
+});
 
 export default function Login() {
   const [loginData, setLoginData] = useState({
@@ -7,16 +16,42 @@ export default function Login() {
     password: "",
   });
   const [getData, setGetData] = useState();
+  const [loginFail, setLoginFail] = React.useState(false);
+const [loginSuccess,setLoginSuccess]=useState(false)
+
+const navigate=useNavigate()
+
+  const loginClose = (event, reason) => {
+    if (reason === 'clickaway') {
+      return;
+    }
+    setLoginFail(false);
+  };
+  const loginOpen = (event, reason) => {
+    if (reason === 'clickaway') {
+      return;
+    }
+    setLoginSuccess(false);
+  };
 
   const handleSubmit = (e) => {
-    
     e.preventDefault();
     const localStorageGetData = JSON.parse(localStorage.getItem("userData"));
     setGetData(localStorageGetData);
-     const check=getData.map((item)=>getData.find((value)=>value.password===item.password))
-     console.log("check",check)
-     
+    
+    const check=localStorageGetData.some((value)=>value.email.concat(value.password)===loginData.email.concat(loginData.password))
+    console.log("check",check)
+   if(!check){
+     setLoginFail(true);
+  }else{
+    setLoginSuccess(true);
+    localStorage.setItem('login',true)
+    navigate('/') 
+       localStorage.setItem("loginData",JSON.stringify(loginData))
+  }
+
   };
+
   const handleChange = (e) => {
     const name = e.target.name;
     const value = e.target.value;
@@ -24,7 +59,22 @@ export default function Login() {
   };
 
   return (
-    <div className="login-page">
+  <div>
+    <Stack spacing={2} sx={{ width: '100%' }}>
+      <Snackbar open={loginFail} autoHideDuration={6000} onClose={loginClose}>
+        <Alert onClose={loginClose} severity="error" sx={{ width: '100%' }}>
+          Login Failed !
+        </Alert>
+      </Snackbar>
+    </Stack>
+    <Stack spacing={2} sx={{ width: '100%' }}>
+      <Snackbar open={loginSuccess} autoHideDuration={6000} onClose={loginOpen}>
+        <Alert onClose={loginOpen} severity="success" sx={{ width: '100%' }}>
+          Login Success
+        </Alert>
+      </Snackbar>
+    </Stack>
+      <div className="login-page">
       <div class="background" style={{ height: "582px" }}>
         <div class="shape"></div>
         <div class="shape"></div>
@@ -60,5 +110,7 @@ export default function Login() {
         </div>
       </form>
     </div>
+  </div>
+
   );
 }

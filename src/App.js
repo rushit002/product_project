@@ -13,6 +13,12 @@ import CheckoutProduct from "./Pages/CheckoutProduct";
 import SellingProduct from "./Pages/SellingProduct";
 import Login from "./Pages/Login";
 import Register from "./Pages/Register";
+import ProtectedRoute from "./Pages/ProtectedRoute";
+import Clothes from "./Pages/Product/Clothes";
+import Electronics from "./Pages/Product/Electronics";
+import Furniture from "./Pages/Product/Furniture";
+import Others from "./Pages/Product/Others";
+import Shoes from "./Pages/Product/Shoes";
 
 export const UserProductData=createContext()
 
@@ -20,7 +26,8 @@ function App() {
   const [getProduct, setGetProduct] = useState([]);
   const [getCategoriesData, setGetCategoriesData] = useState();
   const [filterData, setFilterData] = useState();
-
+   const [newgetCategoriesData,setNewGetCategoriesData]=useState()
+   const [newgetProduct,setNewGetProduct]=useState()
 
 const productApi = () => {
   fetch("https://fakestoreapi.com/products")
@@ -41,26 +48,46 @@ const categoriesApi = () => {
     .then((json) => setGetCategoriesData(json));
 };
 
+const newCategoriesApi=()=>{
+  fetch("https://api.escuelajs.co/api/v1/categories")
+  .then((res) => res.json())
+  .then((json) => setNewGetCategoriesData(json));
+}
+
+const newProductApi=()=>{
+  fetch(" https://api.escuelajs.co/api/v1/products")
+  .then((res) => res.json())
+  .then((json) => setNewGetProduct(json));
+}
+
 useEffect(() => {
+  newProductApi()
+  newCategoriesApi()
   productApi();
   categoriesApi();
 }, []);
+
   return (
     <div className="App">
-      <UserProductData.Provider value={{getProduct,setGetProduct,getCategoriesData,setGetCategoriesData,filterData,setFilterData}}>
+      <UserProductData.Provider value={{getProduct,setGetProduct,getCategoriesData,setGetCategoriesData,filterData,setFilterData,newgetCategoriesData,newgetProduct}}>
       <BrowserRouter>
         <Header />
      <Routes>
-     <Route path='/' element={<HomePage/>}/>
-     <Route path='/product' element={<Product/>}/>
-     <Route path='/product/:id' element={<ViewProduct/>}/>
-     <Route path='/contact' element={<Contact/>}/>
-     <Route path='/selling' element={<SellingProduct/>}/>
-     <Route path='/about' element={<About/>}/>
+     <Route path='/' element={<ProtectedRoute Component={HomePage}/>}/>
+     <Route path='/product' element={<ProtectedRoute Component={Product}/>}/>
+     <Route path='/product/:id' element={<ProtectedRoute Component={ViewProduct}/>}/>
+     <Route path='/about/:id' element={<ProtectedRoute Component={Contact}/>}/>
+     <Route path='/selling' element={<ProtectedRoute Component={SellingProduct}/>}/>
+     <Route path='/about' element={<ProtectedRoute Component={About}/>}/>
+     <Route path='/clothes' element={<ProtectedRoute Component={Clothes}/>}/>
+     <Route path='/electronics' element={<ProtectedRoute Component={Electronics}/>}/>
+     <Route path='/furniture' element={<ProtectedRoute Component={Furniture}/>}/>
+     <Route path='/others' element={<ProtectedRoute Component={Others}/>}/>
+     <Route path='/shoes' element={<ProtectedRoute Component={Shoes}/>}/>
      <Route path='/login' element={<Login/>}/>
      <Route path='/register' element={<Register/>}/>
-     <Route path='/checkout' element={<CheckoutProduct/>}/>
-     <Route path='/cart' element={<Cart/>}/>
+     <Route path='/checkout' element={<ProtectedRoute Component={CheckoutProduct}/>}/>
+     <Route path='/cart' element={<ProtectedRoute Component={Cart}/>}/>
 
      </Routes>
         </BrowserRouter>

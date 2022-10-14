@@ -50,11 +50,20 @@ export default function CheckoutProduct() {
 
   const handleSubmit=(e)=>{
     e.preventDefault();
-    console.log("userData",userData)
     const orderRandom=Math.floor(Math.random() * 1000) + 1
     setOrderNumber(orderRandom)
+    
   }
-
+  const buyProductData = () => {
+    const userDataClone = { ...userData }
+    userDataClone["orderNumber"] = orderNumber
+    const localStorageData = []
+    localStorageData.push(userDataClone)
+    const localStorageDataAdd = localStorageData.concat(JSON.parse(localStorage.getItem("buyData") || "[]"));
+    console.log("localStorageDataAdd", localStorageDataAdd)
+    localStorage.setItem("buyData", JSON.stringify(localStorageDataAdd));
+    navigate('/')
+  }
   const handleChange=(e)=>{
         const name=e?.target.name
         const value=e?.target.value
@@ -104,7 +113,7 @@ export default function CheckoutProduct() {
     </div>
       </div>
       <div class="modal-footer">
-        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal" onClick={()=>{navigate('/cart')}}>Close</button>
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal" onClick={()=>{buyProductData()}}>Done</button>
       </div>
     </div>
   </div>
