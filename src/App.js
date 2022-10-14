@@ -26,10 +26,12 @@ function App() {
   const [getProduct, setGetProduct] = useState([]);
   const [getCategoriesData, setGetCategoriesData] = useState();
   const [filterData, setFilterData] = useState();
-   const [newgetCategoriesData,setNewGetCategoriesData]=useState()
-   const [newgetProduct,setNewGetProduct]=useState()
+   const [newGetCategoriesData,setNewGetCategoriesData]=useState()
+   const [newGetProduct,setNewGetProduct]=useState()
 
-const productApi = () => {
+  const [newFilterData,setNewFilterData]=useState()
+
+   const productApi = () => {
   fetch("https://fakestoreapi.com/products")
     .then((res) => res.json())
     .then(json => {
@@ -60,16 +62,21 @@ const newProductApi=()=>{
   .then((json) => setNewGetProduct(json));
 }
 
+const filterDataFunction=()=>{
+  const filterData=newGetProduct?.filter((item)=>newGetCategoriesData?.find((value)=>value.name=item.category.name))
+ setNewFilterData(filterData)
+}
 useEffect(() => {
   newProductApi()
   newCategoriesApi()
   productApi();
   categoriesApi();
+  filterDataFunction()
 }, []);
 
   return (
     <div className="App">
-      <UserProductData.Provider value={{getProduct,setGetProduct,getCategoriesData,setGetCategoriesData,filterData,setFilterData,newgetCategoriesData,newgetProduct}}>
+      <UserProductData.Provider value={{getProduct,setGetProduct,getCategoriesData,setGetCategoriesData,filterData,setFilterData,newGetCategoriesData,newGetProduct,newFilterData,newFilterData}}>
       <BrowserRouter>
         <Header />
      <Routes>

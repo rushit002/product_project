@@ -5,7 +5,7 @@ import './CategoryCmp.css'
 
 export default function CategoryCmp() {
   const [getCategoryData, setGetCategoryData] = useState()
-  const {newgetProduct,newgetCategoriesData}=useContext(UserProductData)
+  const {newGetProduct,newGetCategoriesData,newFilterData}=useContext(UserProductData)
 
   const getDataApi=()=>{
       fetch("https://api.escuelajs.co/api/v1/categories")
@@ -14,15 +14,11 @@ export default function CategoryCmp() {
   }
     useEffect(() => {
    getDataApi()
-   filterDataFunction()
     }, [])
 
-    console.log("product",newgetProduct)
-    console.log("category",newgetCategoriesData)
-const filterDataFunction=()=>{
-  const filterData=newgetProduct?.filter((item)=>newgetCategoriesData?.find((value)=>value.name=item.category.name))
-  console.log("filterData",filterData)
-}
+
+      };
+
   return (
     <div>
 <section id="advertisers" class="advertisers-service-sec pt-5 pb-5">
