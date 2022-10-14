@@ -17,7 +17,6 @@ export default function CategoryCmp() {
     }, [])
 
 
-      };
 
   return (
     <div>
