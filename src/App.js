@@ -19,6 +19,7 @@ import Electronics from "./Pages/Product/Electronics";
 import Furniture from "./Pages/Product/Furniture";
 import Others from "./Pages/Product/Others";
 import Shoes from "./Pages/Product/Shoes";
+import NewViewProduct from "./Pages/Product/NewViewProduct";
 
 export const UserProductData=createContext()
 
@@ -91,6 +92,7 @@ useEffect(() => {
      <Route path='/furniture' element={<ProtectedRoute Component={Furniture}/>}/>
      <Route path='/others' element={<ProtectedRoute Component={Others}/>}/>
      <Route path='/shoes' element={<ProtectedRoute Component={Shoes}/>}/>
+     <Route path='/newviewproduct:id' element={<ProtectedRoute Component={NewViewProduct}/>}/>
      <Route path='/login' element={<Login/>}/>
      <Route path='/register' element={<Register/>}/>
      <Route path='/checkout' element={<ProtectedRoute Component={CheckoutProduct}/>}/>

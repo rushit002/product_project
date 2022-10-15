@@ -19,15 +19,14 @@ export default function Register() {
     setIsSubmit(true);
     e.preventDefault();
     console.log("registerData", registerData);
-
     const localStorageData = [];
     localStorageData.push(registerData);
     const localStorageDataAdd = localStorageData.concat(JSON.parse(localStorage.getItem("userData") || "[]"));
     console.log("localStorageDataAdd", localStorageDataAdd)
     localStorage.setItem("userData", JSON.stringify(localStorageDataAdd));
-   if(isSubmit){
- navigate("/login")
-   }
+    if (isSubmit) {
+      navigate("/login")
+    }
   };
 
   const handleChange = (e) => {

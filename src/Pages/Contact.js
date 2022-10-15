@@ -5,6 +5,8 @@ export default function Contact() {
   const { id } = useParams();
 
   return (
-    <div>Contact</div>
+    <div>
+     
+    </div>
   )
 }
